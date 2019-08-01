@@ -99,6 +99,7 @@ class AddNewTrackViewModel: NSObject {
             for track in trackList {
                 if !allTracks.contains(track) {
                     allTracks.append(track)
+                    Log.logNewTrack(track)
                 }
             }
         }

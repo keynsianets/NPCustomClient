@@ -8,6 +8,7 @@ target 'NPCustomClient' do
   # Pods for NPCustomClient
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
+  pod 'Firebase/Analytics'
 
 end
 
@@ -18,5 +19,6 @@ target 'NPTodayExtension' do
   # Pods for NPTodayExtension
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
+  pod 'Firebase/Analytics'
 
 end
