@@ -34,12 +34,20 @@
                                     <constraint firstAttribute="trailing" secondItem="0OO-NY-F5t" secondAttribute="trailing" id="uM9-FL-mCu"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yUC-V7-9NZ">
+                                <rect key="frame" x="0.0" y="5" width="320" height="37"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="tma-cc-lQU" secondAttribute="bottom" id="8eL-us-zWu"/>
                             <constraint firstItem="tma-cc-lQU" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="U8n-So-FxS"/>
                             <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="tma-cc-lQU" secondAttribute="trailing" id="Wji-YH-bJg"/>
+                            <constraint firstItem="yUC-V7-9NZ" firstAttribute="height" secondItem="S3S-Oj-5AN" secondAttribute="height" id="haz-gf-w2R"/>
                             <constraint firstItem="tma-cc-lQU" firstAttribute="top" secondItem="S3S-Oj-5AN" secondAttribute="top" id="jk6-ob-tFO"/>
+                            <constraint firstItem="yUC-V7-9NZ" firstAttribute="centerX" secondItem="ssy-KU-ocm" secondAttribute="centerX" id="lGy-p5-tl6"/>
+                            <constraint firstItem="yUC-V7-9NZ" firstAttribute="centerY" secondItem="ssy-KU-ocm" secondAttribute="centerY" id="sI8-0d-2dO"/>
+                            <constraint firstItem="yUC-V7-9NZ" firstAttribute="width" secondItem="S3S-Oj-5AN" secondAttribute="width" id="sNc-IN-Far"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
                     </view>
@@ -47,6 +55,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="37"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="yUC-V7-9NZ" id="2tp-VX-Sr1"/>
                         <outlet property="tableView" destination="0OO-NY-F5t" id="QPf-xF-BfF"/>
                     </connections>
                 </viewController>

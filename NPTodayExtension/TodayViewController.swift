@@ -15,19 +15,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = MyParcelsViewTodaysModel()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    let viewModel = MyParcelsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         tableView.dataSource = self
-        tableView.rowHeight = 93
+        tableView.rowHeight = extensionRowHeight
         tableView.allowsSelection = false
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets.zero
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         viewModel.loadData()
         viewModel.trackListChanged = { [weak self] () in
             self?.tableView.reloadData()
+        }
+        viewModel.showLoading = { [weak self] (hide) in
+            self?.activityIndicator.isHidden = hide
+            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
         }
     }
         
@@ -38,7 +44,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .expanded {
-            preferredContentSize = CGSize(width: 0, height: 280)
+            preferredContentSize = CGSize(width: 0, height: preferedHeightForExtension)
         } else {
             preferredContentSize = maxSize
         }

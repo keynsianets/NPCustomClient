@@ -14,10 +14,15 @@ class MyParcelsViewModel: NSObject {
     var trackList: [TrackInfo] = [] {
         didSet {
             self.trackListChanged?()
+            self.showNoDataLabel?(trackList.count > 0)
         }
     }
     
     var trackListChanged: (() -> ())? = nil
+    
+    var showNoDataLabel: ((Bool) -> ())? = nil
+    
+    var showLoading: ((Bool) -> ())? = nil
     
     func dataForCell(indexPath: IndexPath) -> TrackInfo? {
         let index = indexPath.row
@@ -28,8 +33,8 @@ class MyParcelsViewModel: NSObject {
     }
     
     func loadData() {
-        
-        if let tracks = UserDefaults(suiteName: "group.kinect.pro.npcustomclient")?.array(forKey: defaultsTracksKey) as? [String] {
+        showLoading?(false)
+        if let tracks = userDefaults?.array(forKey: defaultsTracksKey) as? [String], tracks.count > 0 {
             RestAPI.shared.getTrackInfo(documents: tracks) { (isOk, response) in
                 if isOk, let success = response?.success, success, let data = response?.data, data.count > 0 {
                     var tracks: [TrackInfo] = []
@@ -39,6 +44,9 @@ class MyParcelsViewModel: NSObject {
                             return previous.number == number
                         }) {
                             tracks.append(track)
+                            if let status = track.status, let number = track.number {
+                                self.updateTrackStatus(track: number, status: status)
+                            }
                         }
                     }
                     self.trackList = tracks.sorted(by: {(first, second) in
@@ -60,9 +68,17 @@ class MyParcelsViewModel: NSObject {
                         }
                         return firstDate > secondDate
                     })
+                    self.showLoading?(true)
                 }
             }
         }
+    }
+    
+    func updateTrackStatus(track: String, status: String) {
+        if let previousStatus = userDefaults?.string(forKey: track), previousStatus != status {
+            LocalNotification.push(title: track, description: status, identifier: track)
+        }
+        userDefaults?.set(status, forKey: track)
     }
     
     

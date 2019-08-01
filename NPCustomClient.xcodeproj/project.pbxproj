@@ -9,10 +9,18 @@
 /* Begin PBXBuildFile section */
 		96AFB5618C1C742598D43E79 /* Pods_NPTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C780662857295FF1D93F08 /* Pods_NPTodayExtension.framework */; };
 		9D192ADE22EF032100BCB889 /* RoundButtonWithShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D192ADD22EF032100BCB889 /* RoundButtonWithShadow.swift */; };
-		9D192ADF22EF032100BCB889 /* RoundButtonWithShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D192ADD22EF032100BCB889 /* RoundButtonWithShadow.swift */; };
 		9D192AE122EF041700BCB889 /* ParcelsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D192AE022EF041700BCB889 /* ParcelsListModel.swift */; };
 		9D192AE222EF041700BCB889 /* ParcelsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D192AE022EF041700BCB889 /* ParcelsListModel.swift */; };
 		9D192AE522EF45A200BCB889 /* AddNewTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D192AE422EF45A200BCB889 /* AddNewTrackViewController.swift */; };
+		9D6B4F4B22F2B7B10022C7C4 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F4A22F2B7B10022C7C4 /* AppCoordinator.swift */; };
+		9D6B4F4D22F2BA160022C7C4 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F4C22F2BA160022C7C4 /* Coordinator.swift */; };
+		9D6B4F4F22F2BB7A0022C7C4 /* MyParcelsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F4E22F2BB7A0022C7C4 /* MyParcelsCoordinator.swift */; };
+		9D6B4F5122F2BF520022C7C4 /* AddNewTrackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5022F2BF520022C7C4 /* AddNewTrackCoordinator.swift */; };
+		9D6B4F5422F2E7C80022C7C4 /* MyParcelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133F322F1F4010002F968 /* MyParcelsViewModel.swift */; };
+		9D6B4F5622F2F6E00022C7C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5522F2F6E00022C7C4 /* Strings.swift */; };
+		9D6B4F5722F2F6E00022C7C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5522F2F6E00022C7C4 /* Strings.swift */; };
+		9D6B4F5922F301E30022C7C4 /* PushLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */; };
+		9D6B4F5A22F301E30022C7C4 /* PushLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */; };
 		9D93315522F031F200DD33C2 /* NewTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93315322F031F200DD33C2 /* NewTrackTableViewCell.swift */; };
 		9D93315622F031F200DD33C2 /* NewTrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D93315422F031F200DD33C2 /* NewTrackTableViewCell.xib */; };
 		9D93315922F038FA00DD33C2 /* AddNewTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93315822F038FA00DD33C2 /* AddNewTrackViewModel.swift */; };
@@ -27,14 +35,12 @@
 		9D9B94DD22DF119A0066FE54 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9B94DC22DF119A0066FE54 /* TodayViewController.swift */; };
 		9D9B94E022DF119A0066FE54 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D9B94DE22DF119A0066FE54 /* MainInterface.storyboard */; };
 		9D9B94E422DF119A0066FE54 /* NPTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9D9B94D722DF11990066FE54 /* NPTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9DC133E022F1704E0002F968 /* ShowAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133DF22F1704E0002F968 /* ShowAlertExtension.swift */; };
 		9DC133E222F17FE90002F968 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133E122F17FE90002F968 /* RestAPI.swift */; };
 		9DC133E322F17FE90002F968 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133E122F17FE90002F968 /* RestAPI.swift */; };
 		9DC133E822F1D2FD0002F968 /* TrackInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133E622F1D2FD0002F968 /* TrackInfoTableViewCell.swift */; };
 		9DC133E922F1D2FD0002F968 /* TrackInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DC133E722F1D2FD0002F968 /* TrackInfoTableViewCell.xib */; };
 		9DC133EB22F1EBE40002F968 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133EA22F1EBE40002F968 /* CustomDateFormatter.swift */; };
 		9DC133EC22F1EBE40002F968 /* CustomDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133EA22F1EBE40002F968 /* CustomDateFormatter.swift */; };
-		9DC133F122F1F3A90002F968 /* MyParcelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133E422F1D2650002F968 /* MyParcelsViewModel.swift */; };
 		9DC133F222F1F3B90002F968 /* TodayExtensionTrackInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133EF22F1F2AD0002F968 /* TodayExtensionTrackInfoTableViewCell.swift */; };
 		9DC133F422F1F4010002F968 /* MyParcelsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC133F322F1F4010002F968 /* MyParcelsViewModel.swift */; };
 		9DC133F722F1FE650002F968 /* TodayExtensionTrackInfoTableViewCell.swift in Resources */ = {isa = PBXBuildFile; fileRef = 9DC133EF22F1F2AD0002F968 /* TodayExtensionTrackInfoTableViewCell.swift */; };
@@ -76,6 +82,12 @@
 		9D192ADD22EF032100BCB889 /* RoundButtonWithShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButtonWithShadow.swift; sourceTree = "<group>"; };
 		9D192AE022EF041700BCB889 /* ParcelsListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelsListModel.swift; sourceTree = "<group>"; };
 		9D192AE422EF45A200BCB889 /* AddNewTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTrackViewController.swift; sourceTree = "<group>"; };
+		9D6B4F4A22F2B7B10022C7C4 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9D6B4F4C22F2BA160022C7C4 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		9D6B4F4E22F2BB7A0022C7C4 /* MyParcelsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyParcelsCoordinator.swift; sourceTree = "<group>"; };
+		9D6B4F5022F2BF520022C7C4 /* AddNewTrackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTrackCoordinator.swift; sourceTree = "<group>"; };
+		9D6B4F5522F2F6E00022C7C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalNotification.swift; sourceTree = "<group>"; };
 		9D93315322F031F200DD33C2 /* NewTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackTableViewCell.swift; sourceTree = "<group>"; };
 		9D93315422F031F200DD33C2 /* NewTrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTrackTableViewCell.xib; sourceTree = "<group>"; };
 		9D93315822F038FA00DD33C2 /* AddNewTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTrackViewModel.swift; sourceTree = "<group>"; };
@@ -92,9 +104,7 @@
 		9D9B94DC22DF119A0066FE54 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		9D9B94DF22DF119A0066FE54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9D9B94E122DF119A0066FE54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DC133DF22F1704E0002F968 /* ShowAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlertExtension.swift; sourceTree = "<group>"; };
 		9DC133E122F17FE90002F968 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
-		9DC133E422F1D2650002F968 /* MyParcelsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyParcelsViewModel.swift; sourceTree = "<group>"; };
 		9DC133E622F1D2FD0002F968 /* TrackInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9DC133E722F1D2FD0002F968 /* TrackInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackInfoTableViewCell.xib; sourceTree = "<group>"; };
 		9DC133EA22F1EBE40002F968 /* CustomDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormatter.swift; sourceTree = "<group>"; };
@@ -146,6 +156,17 @@
 			path = ViewCotrollers;
 			sourceTree = "<group>";
 		};
+		9D6B4F4922F2B7510022C7C4 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				9D6B4F4C22F2BA160022C7C4 /* Coordinator.swift */,
+				9D6B4F4A22F2B7B10022C7C4 /* AppCoordinator.swift */,
+				9D6B4F4E22F2BB7A0022C7C4 /* MyParcelsCoordinator.swift */,
+				9D6B4F5022F2BF520022C7C4 /* AddNewTrackCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		9D93315222F0309B00DD33C2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,13 +215,15 @@
 				9D9B94C522DF11010066FE54 /* Main.storyboard */,
 				9D9B94C822DF11030066FE54 /* Assets.xcassets */,
 				9D9B94CA22DF11030066FE54 /* LaunchScreen.storyboard */,
-				9DBEA2FE22DF42CB006ED124 /* Models */,
+				9D6B4F4922F2B7510022C7C4 /* Coordinators */,
 				9D192AE322EF456100BCB889 /* ViewCotrollers */,
 				9D93315722F0386C00DD33C2 /* ViewModels */,
+				9DBEA2FE22DF42CB006ED124 /* Models */,
 				9D93315222F0309B00DD33C2 /* Cells */,
 				9DBEA2FA22DF39D2006ED124 /* Utils */,
 				9D9B94CD22DF11030066FE54 /* Info.plist */,
 				9D93315B22F06BA900DD33C2 /* Settings.swift */,
+				9D6B4F5522F2F6E00022C7C4 /* Strings.swift */,
 			);
 			path = NPCustomClient;
 			sourceTree = "<group>";
@@ -220,7 +243,6 @@
 			children = (
 				9DC133F622F1FD9A0002F968 /* NPTodayExtension.entitlements */,
 				9D9B94DC22DF119A0066FE54 /* TodayViewController.swift */,
-				9DC133E422F1D2650002F968 /* MyParcelsViewModel.swift */,
 				9DC133EE22F1F2AD0002F968 /* TodayExtensionTrackInfoTableViewCell.xib */,
 				9DC133EF22F1F2AD0002F968 /* TodayExtensionTrackInfoTableViewCell.swift */,
 				9D9B94DE22DF119A0066FE54 /* MainInterface.storyboard */,
@@ -233,8 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				9D192ADD22EF032100BCB889 /* RoundButtonWithShadow.swift */,
-				9DC133DF22F1704E0002F968 /* ShowAlertExtension.swift */,
 				9DC133EA22F1EBE40002F968 /* CustomDateFormatter.swift */,
+				9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -312,6 +334,9 @@
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -433,15 +458,20 @@
 			files = (
 				9D93315522F031F200DD33C2 /* NewTrackTableViewCell.swift in Sources */,
 				9D192AE122EF041700BCB889 /* ParcelsListModel.swift in Sources */,
+				9D6B4F4D22F2BA160022C7C4 /* Coordinator.swift in Sources */,
+				9D6B4F5922F301E30022C7C4 /* PushLocalNotification.swift in Sources */,
 				9D93315C22F06BA900DD33C2 /* Settings.swift in Sources */,
 				9DC133EB22F1EBE40002F968 /* CustomDateFormatter.swift in Sources */,
 				9D93315922F038FA00DD33C2 /* AddNewTrackViewModel.swift in Sources */,
 				9D192AE522EF45A200BCB889 /* AddNewTrackViewController.swift in Sources */,
+				9D6B4F4B22F2B7B10022C7C4 /* AppCoordinator.swift in Sources */,
 				9D192ADE22EF032100BCB889 /* RoundButtonWithShadow.swift in Sources */,
+				9D6B4F4F22F2BB7A0022C7C4 /* MyParcelsCoordinator.swift in Sources */,
+				9D6B4F5622F2F6E00022C7C4 /* Strings.swift in Sources */,
 				9DC133E222F17FE90002F968 /* RestAPI.swift in Sources */,
 				9DC133E822F1D2FD0002F968 /* TrackInfoTableViewCell.swift in Sources */,
 				9D9B94C422DF11010066FE54 /* MyParcelsViewController.swift in Sources */,
-				9DC133E022F1704E0002F968 /* ShowAlertExtension.swift in Sources */,
+				9D6B4F5122F2BF520022C7C4 /* AddNewTrackCoordinator.swift in Sources */,
 				9DC133F422F1F4010002F968 /* MyParcelsViewModel.swift in Sources */,
 				9D9B94C222DF11010066FE54 /* AppDelegate.swift in Sources */,
 			);
@@ -451,14 +481,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D6B4F5A22F301E30022C7C4 /* PushLocalNotification.swift in Sources */,
 				9D9B94DD22DF119A0066FE54 /* TodayViewController.swift in Sources */,
+				9D6B4F5722F2F6E00022C7C4 /* Strings.swift in Sources */,
 				9DC133E322F17FE90002F968 /* RestAPI.swift in Sources */,
 				9D192AE222EF041700BCB889 /* ParcelsListModel.swift in Sources */,
 				9DC133F222F1F3B90002F968 /* TodayExtensionTrackInfoTableViewCell.swift in Sources */,
 				9D93315D22F06BA900DD33C2 /* Settings.swift in Sources */,
-				9D192ADF22EF032100BCB889 /* RoundButtonWithShadow.swift in Sources */,
 				9DC133EC22F1EBE40002F968 /* CustomDateFormatter.swift in Sources */,
-				9DC133F122F1F3A90002F968 /* MyParcelsViewModel.swift in Sources */,
+				9D6B4F5422F2E7C80022C7C4 /* MyParcelsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +657,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = NPCustomClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,7 +665,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -647,6 +679,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = NPCustomClient/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -654,7 +687,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -666,6 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = NPTodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,7 +709,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -687,6 +721,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7XSVATSQ6N;
 				INFOPLIST_FILE = NPTodayExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -696,7 +731,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

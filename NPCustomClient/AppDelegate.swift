@@ -7,22 +7,25 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var appCoordinator: AppCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        let navigationController = UINavigationController()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let myParcelsVC = storyboard.instantiateViewController(withIdentifier: "MyParcelsViewController") as! MyParcelsViewController
-        navigationController.addChild(myParcelsVC)
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
-        // Override point for customization after application launch.
+        appCoordinator = AppCoordinator(window: window)
+        appCoordinator.start()
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (didAllow, error) in
+            if !didAllow {
+                print("User has declined notifications")
+            }
+        }
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 
@@ -49,5 +52,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+    
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        completionHandler()
+    }
 }
 

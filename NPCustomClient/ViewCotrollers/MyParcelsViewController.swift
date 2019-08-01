@@ -16,7 +16,12 @@ class MyParcelsViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var screenTitleLabel: UILabel! {
         didSet {
-            screenTitleLabel.text = "Мои отправления"
+            screenTitleLabel.text = Strings.myParcels
+        }
+    }
+    @IBOutlet weak var noDataLabel: UILabel! {
+        didSet {
+            noDataLabel.text = Strings.noData
         }
     }
     @IBOutlet weak var tableView: UITableView!
@@ -26,29 +31,36 @@ class MyParcelsViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     let viewModel = MyParcelsViewModel()
+    
+    var openAddNewTrack: (() -> ())? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        tableView.rowHeight = 153
+        tableView.rowHeight = mainAppRowHeight
         tableView.contentInset = UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        tableView.allowsSelection = false
         self.navigationController?.isNavigationBarHidden = true
         viewModel.loadData()
         viewModel.trackListChanged = { [weak self] () in
             self?.tableView.reloadData()
         }
+        viewModel.showNoDataLabel = { [weak self] (hide) in
+            self?.noDataLabel.isHidden = hide
+        }
+        viewModel.showLoading = { [weak self] (hide) in
+            self?.activityIndicator.isHidden = hide
+            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            
+        }
     }
     
     @objc func plusButtonDidTap() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let plusViewController = storyboard.instantiateViewController(withIdentifier: "AddNewTrackViewController") as! AddNewTrackViewController
-        plusViewController.delegate = self
-        self.navigationController?.pushViewController(plusViewController, animated: true)
+        openAddNewTrack?()
     }
-
-
 }
 
 extension MyParcelsViewController: UITableViewDataSource {
@@ -64,9 +76,5 @@ extension MyParcelsViewController: UITableViewDataSource {
     
 }
 
-extension MyParcelsViewController: AddNewTrackViewControllerDelegate {
-    func newTracksAppend() {
-        viewModel.loadData()
-    }
-}
+
 

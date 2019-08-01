@@ -42,6 +42,12 @@
                                         <rect key="frame" x="0.0" y="50" width="414" height="768"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас еще нет посылок для отслеживания" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="Ac0-sd-Z5z">
+                                        <rect key="frame" x="10" y="100" width="394" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRB-eB-X8R" customClass="RoundButtonWithShadow" customModule="NPCustomClient" customModuleProvider="target">
                                         <rect key="frame" x="354" y="728" width="40" height="40"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,38 +57,64 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="+">
+                                        <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lht-DV-xhg">
+                                        <rect key="frame" x="362" y="723" width="24" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="QCg-2D-Wor"/>
+                                            <constraint firstAttribute="height" constant="40" id="wr9-Jn-KCb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="38"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="X1l-RL-fI3" secondAttribute="trailing" id="EWn-tM-bJe"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lht-DV-xhg" secondAttribute="trailing" constant="20" symbolic="YES" id="Eid-X3-HGf"/>
                                     <constraint firstItem="eqm-NG-Sh7" firstAttribute="top" secondItem="X1l-RL-fI3" secondAttribute="bottom" id="HFJ-mK-bJH"/>
                                     <constraint firstAttribute="trailing" secondItem="eqm-NG-Sh7" secondAttribute="trailing" id="KBU-Fr-Kfk"/>
+                                    <constraint firstItem="jRB-eB-X8R" firstAttribute="top" secondItem="Lht-DV-xhg" secondAttribute="bottom" constant="-35" id="NRp-h3-OnP"/>
+                                    <constraint firstItem="Ac0-sd-Z5z" firstAttribute="leading" secondItem="pMw-BC-qJA" secondAttribute="leading" constant="10" id="Q0C-s3-CUz"/>
                                     <constraint firstAttribute="bottom" secondItem="jRB-eB-X8R" secondAttribute="bottom" constant="50" id="SAt-Me-8mj"/>
                                     <constraint firstItem="X1l-RL-fI3" firstAttribute="leading" secondItem="pMw-BC-qJA" secondAttribute="leading" id="UAf-re-c6J"/>
                                     <constraint firstAttribute="trailing" secondItem="jRB-eB-X8R" secondAttribute="trailing" constant="20" id="Ypz-hG-Sac"/>
                                     <constraint firstItem="X1l-RL-fI3" firstAttribute="top" secondItem="pMw-BC-qJA" secondAttribute="top" id="bmq-Df-VIR"/>
+                                    <constraint firstItem="Ac0-sd-Z5z" firstAttribute="top" secondItem="X1l-RL-fI3" secondAttribute="bottom" constant="50" id="ccr-9x-SiW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ac0-sd-Z5z" secondAttribute="trailing" constant="10" id="dRI-Su-MqQ"/>
+                                    <constraint firstItem="Lht-DV-xhg" firstAttribute="leading" secondItem="jRB-eB-X8R" secondAttribute="trailing" constant="-32" id="nGE-bo-HcY"/>
                                     <constraint firstItem="eqm-NG-Sh7" firstAttribute="leading" secondItem="pMw-BC-qJA" secondAttribute="leading" id="oG7-kP-Nic"/>
                                     <constraint firstAttribute="bottom" secondItem="eqm-NG-Sh7" secondAttribute="bottom" id="z0D-3E-uW5"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="6iL-Uq-P5C">
+                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6iL-Uq-P5C" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="IHj-xy-APG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pMw-BC-qJA" secondAttribute="trailing" id="IoT-b0-VBA"/>
+                            <constraint firstItem="6iL-Uq-P5C" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="OV4-7G-bYt"/>
+                            <constraint firstItem="6iL-Uq-P5C" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="S3T-xH-nAN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pMw-BC-qJA" secondAttribute="bottom" id="VcG-uw-msi"/>
                             <constraint firstItem="pMw-BC-qJA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="apY-oG-nbR"/>
                             <constraint firstItem="pMw-BC-qJA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="lH9-Vn-IMj"/>
+                            <constraint firstItem="6iL-Uq-P5C" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="nmT-Ym-Tis"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="fRe-cS-did"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="6iL-Uq-P5C" id="HyK-Md-Hzj"/>
                         <outlet property="contentView" destination="pMw-BC-qJA" id="sao-rg-vlg"/>
                         <outlet property="headerView" destination="X1l-RL-fI3" id="exJ-Qz-meg"/>
+                        <outlet property="noDataLabel" destination="Ac0-sd-Z5z" id="MCd-eE-JfV"/>
                         <outlet property="plusButton" destination="jRB-eB-X8R" id="ZfS-4G-9Ea"/>
                         <outlet property="screenTitleLabel" destination="180-Uq-POD" id="9y7-jL-AYb"/>
                         <outlet property="tableView" destination="eqm-NG-Sh7" id="2rL-tK-4VX"/>
@@ -247,17 +279,26 @@
                                     <constraint firstItem="7Zh-uJ-sfG" firstAttribute="leading" secondItem="kMF-VY-kbz" secondAttribute="leading" id="zc1-ha-BEK"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cDa-mR-4Oh">
+                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zTY-nm-7Yx" firstAttribute="bottom" secondItem="kMF-VY-kbz" secondAttribute="bottom" id="1eH-oi-EyT"/>
                             <constraint firstItem="kMF-VY-kbz" firstAttribute="top" secondItem="zTY-nm-7Yx" secondAttribute="top" id="7TF-Tj-8by"/>
+                            <constraint firstItem="cDa-mR-4Oh" firstAttribute="centerY" secondItem="zTY-nm-7Yx" secondAttribute="centerY" id="ER4-VS-qJa"/>
                             <constraint firstItem="kMF-VY-kbz" firstAttribute="leading" secondItem="zTY-nm-7Yx" secondAttribute="leading" id="SsM-Vc-jXS"/>
+                            <constraint firstItem="cDa-mR-4Oh" firstAttribute="width" secondItem="9hm-AY-tyE" secondAttribute="width" id="U84-I4-5Di"/>
+                            <constraint firstItem="cDa-mR-4Oh" firstAttribute="height" secondItem="9hm-AY-tyE" secondAttribute="height" id="Zta-8Y-fpZ"/>
+                            <constraint firstItem="cDa-mR-4Oh" firstAttribute="centerX" secondItem="zTY-nm-7Yx" secondAttribute="centerX" id="a0u-qB-F66"/>
                             <constraint firstItem="zTY-nm-7Yx" firstAttribute="trailing" secondItem="kMF-VY-kbz" secondAttribute="trailing" id="llE-NG-vYT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zTY-nm-7Yx"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="cDa-mR-4Oh" id="Jc0-Hi-4ZG"/>
                         <outlet property="backButton" destination="tLP-hw-b2S" id="ABW-rJ-PUh"/>
                         <outlet property="cancelEnteringButton" destination="WjG-1e-CJT" id="6Kc-kV-zgT"/>
                         <outlet property="clearButton" destination="ooD-lH-zIt" id="hTM-n2-kIu"/>

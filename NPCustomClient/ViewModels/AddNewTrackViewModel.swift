@@ -25,6 +25,10 @@ class AddNewTrackViewModel: NSObject {
     
     var backToPreviousScreen: (() -> ())? = nil
     
+    var showLoading: ((Bool) -> ())? = nil
+    
+    var tracksStatus: [String: String] = [:]
+    
     func processUserInput(text: String?) {
         guard let track = text else { return }
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: track)) {
@@ -39,9 +43,14 @@ class AddNewTrackViewModel: NSObject {
     }
     
     func ckeckIsValidTrack(track: String)  {
+        showLoading?(false)
         RestAPI.shared.getTrackInfo(documents: [track], callback: { (isOk, trackInfo) in
+            self.showLoading?(true)
             if isOk, let success = trackInfo?.success, success, trackInfo?.data?.count ?? 0 > 0, let dateCreated = trackInfo?.data?[0].dateCreated, !dateCreated.isEmpty {
                 debugPrint("is valid track")
+                if let status = trackInfo?.data?[0].status {
+                    self.updateTrackStatus(track: track, status: status)
+                }
                 if !self.trackList.contains(track) {
                     self.trackList.append(track)
                 } else {
@@ -51,6 +60,13 @@ class AddNewTrackViewModel: NSObject {
                 self.setTrackInvalid?(false)
             }
         })
+    }
+    
+    func updateTrackStatus(track: String, status: String) {
+        if let previousStatus = userDefaults?.string(forKey: track), previousStatus != status {
+            LocalNotification.push(title: track, description: status, identifier: track)
+        }
+        userDefaults?.set(status, forKey: track)
     }
     
     func sanitizeText(sourceText: String?) -> String? {
@@ -86,8 +102,8 @@ class AddNewTrackViewModel: NSObject {
                 }
             }
         }
-        UserDefaults(suiteName: "group.kinect.pro.npcustomclient")?.set(allTracks, forKey: defaultsTracksKey)
-        UserDefaults(suiteName: "group.kinect.pro.npcustomclient")?.synchronize()
+        userDefaults?.set(allTracks, forKey: defaultsTracksKey)
+        userDefaults?.synchronize()
         self.backToPreviousScreen?()
     }
     

@@ -23,7 +23,7 @@ class AddNewTrackViewController: UIViewController {
     }
     @IBOutlet weak var screenTitleLabel: UILabel! {
         didSet {
-            screenTitleLabel.text = "Отследить ЭН"
+            screenTitleLabel.text = Strings.trackParcel
         }
     }
     @IBOutlet weak var clearButton: UIButton! {
@@ -31,9 +31,14 @@ class AddNewTrackViewController: UIViewController {
             clearButton.addTarget(self, action: #selector(clearButtonDidTap), for: .touchUpInside)
         }
     }
-    @IBOutlet weak var trackNumberLabel: UILabel!
+    @IBOutlet weak var trackNumberLabel: UILabel! {
+        didSet {
+            trackNumberLabel.text = Strings.trackNum
+        }
+    }
     @IBOutlet weak var trackNumberTextField: UITextField! {
         didSet {
+            trackNumberTextField.placeholder = Strings.inputTrack
             trackNumberTextField.addTarget(self, action: #selector(textFieldTextDidChanged(_:)),
                                 for: UIControl.Event.editingChanged)
             trackNumberTextField.addTarget(self, action: #selector(endEditing), for: .touchUpOutside)
@@ -52,13 +57,14 @@ class AddNewTrackViewController: UIViewController {
     }
     @IBOutlet weak var errorLabel: UILabel! {
         didSet {
-            errorLabel.text = "Такого номера не существует"
+            errorLabel.text = Strings.incorrectTrack
         }
     }
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let viewModel = AddNewTrackViewModel()
     
-    var delegate: AddNewTrackViewControllerDelegate?
+    var finish: (() -> ())? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +72,7 @@ class AddNewTrackViewController: UIViewController {
         tracksTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         trackNumberTextField.delegate = self
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
+        activityIndicator.isHidden = true
         viewModel.trackListChanged = { [weak self] () in
             self?.trackListChanged()
         }
@@ -77,6 +84,11 @@ class AddNewTrackViewController: UIViewController {
         }
         viewModel.backToPreviousScreen = { [weak self] () in
             self?.backToPreviousScreen()
+        }
+        viewModel.showLoading = { [weak self] (hide) in
+            self?.activityIndicator.isHidden = hide
+            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            
         }
         
     }
@@ -121,15 +133,8 @@ class AddNewTrackViewController: UIViewController {
     }
     
     @objc func backToPreviousScreen() {
-        if viewModel.trackList.count > 0 {
-            delegate?.newTracksAppend()
-        }
-        let vcs = self.navigationController?.viewControllers
-        if ((vcs?.contains(self)) != nil) {
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
+        endEditing()
+        finish?()
     }
     
     @objc func endEditing() {
