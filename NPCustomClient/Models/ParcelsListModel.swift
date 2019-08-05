@@ -7,32 +7,60 @@
 //
 
 import Foundation
-import Alamofire
-import AlamofireObjectMapper
-import ObjectMapper
 
 extension RestAPI {
     
     func getTrackInfo(documents: [String], callback: @escaping (_ isOK: Bool, _ trackInfo: NPResponse?) -> Void) {
         parameters["modelName"] = "TrackingDocument"
         parameters["calledMethod"] = "getStatusDocuments"
-        
+
         var documentsDictionary: [[String:String]] = []
         for document in documents {
             documentsDictionary.append(["DocumentNumber": document, "Phone":""])
         }
         parameters["methodProperties"] = ["Documents": documentsDictionary]
-        Alamofire.request(serverURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).validate().responseObject{ (response: DataResponse<NPResponse>) in
-            callback(response.result.isSuccess, response.result.value)
+        guard let url = URL(string: serverURL) else {
+            callback(false, nil)
+            return
         }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            callback(false, nil)
+            return
+        }
+        request.httpBody = httpBody
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            debugPrint("get response")
+            if let error = error {
+                debugPrint("error:", error)
+                callback(false, nil)
+                return
+            }
+            guard let data = data else {
+                callback(false, nil)
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                    callback(false, nil)
+                    return
+                }
+                callback(true, NPResponse(json: json))
+            } catch let jsonError {
+                print("Error serializing json: ", jsonError)
+            }
+        }.resume()
+        
+        
     }
     
 }
 
-class NPResponse: Mappable {
-    
+class NPResponse {
     var success: Bool?
-    var data: [TrackInfo]?
+    var data: [TrackInfo] = []
     var errors: [String]?
     var warnings: [String:Any]?
     var info: [String]?
@@ -41,26 +69,27 @@ class NPResponse: Mappable {
     var warningCodes: [String]?
     var infoCodes: [String]?
     
-    required init?(map: Map) {
+    init(json: [String: Any]) {
+        success                = json["success"] as? Bool
+        errors                 = json["errors"] as? [String]
+        warnings               = json["warnings"] as? [String : Any]
+        info                   = json["info"] as? [String]
+        messageCodes           = json["messageCodes"] as? [String]
+        errorCodes             = json["errorCodes"] as? [String]
+        warningCodes           = json["warningCodes"] as? [String]
+        infoCodes              = json["infoCodes"] as? [String]
         
-    }
-    
-    func mapping(map: Map) {
-        success                <- map["success"]
-        data                   <- map["data"]
-        errors                 <- map["errors"]
-        warnings               <- map["warnings"]
-        info                   <- map["info"]
-        messageCodes           <- map["messageCodes"]
-        errorCodes             <- map["errorCodes"]
-        warningCodes           <- map["warningCodes"]
-        infoCodes              <- map["infoCodes"]
+        if let sourceData = json["data"] as? [[String:Any]] {
+            var dataSource: [TrackInfo] = []
+            for doc in sourceData {
+                dataSource.append(TrackInfo(json: doc))
+            }
+            data = dataSource
+        }
     }
 }
 
-
-class TrackInfo: Mappable {
-    
+class TrackInfo {
     var number: String?
     var redelivery: Int?
     var redeliverySum: [Int]?
@@ -118,66 +147,62 @@ class TrackInfo: Mappable {
     var backwardDeliverySubTypesActions: [Any]?
     var undeliveryReasons: String?
     
-    required init?(map: Map) {
+    init(json: [String: Any]) {
+        number                                              = json["Number"] as? String
+        redelivery                                          = json["Redelivery"] as? Int
+        redeliverySum                                       = json["RedeliverySum"] as? [Int]
+        redeliveryNum                                       = json["RedeliveryNum"] as? String
+        redeliveryPayer                                     = json["RedeliveryPayer"] as? String
+        ownerDocumentType                                   = json["OwnerDocumentType"] as? String
+        lastCreatedOnTheBasisDocumentType                   = json["LastCreatedOnTheBasisDocumentType"] as? String
+        lastCreatedOnTheBasisPayerType                      = json["LastCreatedOnTheBasisPayerType"] as? String
+        lastCreatedOnTheBasisDateTime                       = json["LastCreatedOnTheBasisDateTime"] as? String
         
-    }
-    
-    func mapping(map: Map) {
-        number                                              <- map["Number"]
-        redelivery                                          <- map["Redelivery"]
-        redeliverySum                                       <- map["RedeliverySum"]
-        redeliveryNum                                       <- map["RedeliveryNum"]
-        redeliveryPayer                                     <- map["RedeliveryPayer"]
-        ownerDocumentType                                   <- map["OwnerDocumentType"]
-        lastCreatedOnTheBasisDocumentType                   <- map["LastCreatedOnTheBasisDocumentType"]
-        lastCreatedOnTheBasisPayerType                      <- map["LastCreatedOnTheBasisPayerType"]
-        lastCreatedOnTheBasisDateTime                       <- map["LastCreatedOnTheBasisDateTime"]
+        lastTransactionStatusGM                             = json["LastTransactionStatusGM"] as? String
+        lastTransactionDateTimeGM                           = json["LastTransactionDateTimeGM"] as? String
+        dateCreated                                         = json["DateCreated"] as? String
+        documentWeight                                      = json["DocumentWeight"] as? Double
+        checkWeight                                         = json["CheckWeight"] as? Double
+        documentCost                                        = json["DocumentCost"] as? Double
+        sumBeforeCheckWeight                                = json["SumBeforeCheckWeight"] as? Double
+        payerType                                           = json["PayerType"] as? String
+        recipientFullName                                   = json["RecipientFullName"] as? String
         
-        lastTransactionStatusGM                             <- map["LastTransactionStatusGM"]
-        lastTransactionDateTimeGM                           <- map["LastTransactionDateTimeGM"]
-        dateCreated                                         <- map["DateCreated"]
-        documentWeight                                      <- map["DocumentWeight"]
-        checkWeight                                         <- map["CheckWeight"]
-        documentCost                                        <- map["DocumentCost"]
-        sumBeforeCheckWeight                                <- map["SumBeforeCheckWeight"]
-        payerType                                           <- map["PayerType"]
-        recipientFullName                                   <- map["RecipientFullName"]
+        recipientDateTime                                   = json["RecipientDateTime"] as? String
+        scheduledDeliveryDate                               = json["ScheduledDeliveryDate"] as? String
+        paymentMethod                                       = json["PaymentMethod"] as? String
+        cargoDescriptionString                              = json["CargoDescriptionString"] as? String
+        cargoType                                           = json["CargoType"] as? String
+        citySender                                          = json["CitySender"] as? String
+        cityRecipient                                       = json["CityRecipient"] as? String
+        warehouseRecipient                                  = json["WarehouseRecipient"] as? String
+        counterpartyType                                    = json["CounterpartyType"] as? String
         
-        recipientDateTime                                   <- map["RecipientDateTime"]
-        scheduledDeliveryDate                               <- map["ScheduledDeliveryDate"]
-        paymentMethod                                       <- map["PaymentMethod"]
-        cargoDescriptionString                              <- map["CargoDescriptionString"]
-        cargoType                                           <- map["CargoType"]
-        citySender                                          <- map["CitySender"]
-        cityRecipient                                       <- map["CityRecipient"]
-        warehouseRecipient                                  <- map["WarehouseRecipient"]
-        counterpartyType                                    <- map["CounterpartyType"]
+        afterpaymentOnGoodsCost                             = json["AfterpaymentOnGoodsCost"] as? Int
+        serviceType                                         = json["ServiceType"] as? String
+        undeliveryReasonsSubtypeDescription                 = json["UndeliveryReasonsSubtypeDescription"] as? String
+        warehouseRecipientNumber                            = json["WarehouseRecipientNumber"] as? String
+        lastCreatedOnTheBasisNumber                         = json["LastCreatedOnTheBasisNumber"] as? String
+        phoneRecipient                                      = json["PhoneRecipient"] as? String
+        recipientFullNameEW                                 = json["RecipientFullNameEW"] as? String
+        warehouseRecipientInternetAddressRef                = json["WarehouseRecipientInternetAddressRef"] as? String
+        marketplacePartnerToken                             = json["MarketplacePartnerToken"] as? String
         
-        afterpaymentOnGoodsCost                             <- map["AfterpaymentOnGoodsCost"]
-        serviceType                                         <- map["ServiceType"]
-        undeliveryReasonsSubtypeDescription                 <- map["UndeliveryReasonsSubtypeDescription"]
-        warehouseRecipientNumber                            <- map["WarehouseRecipientNumber"]
-        lastCreatedOnTheBasisNumber                         <- map["LastCreatedOnTheBasisNumber"]
-        phoneRecipient                                      <- map["PhoneRecipient"]
-        recipientFullNameEW                                 <- map["RecipientFullNameEW"]
-        warehouseRecipientInternetAddressRef                <- map["WarehouseRecipientInternetAddressRef"]
-        marketplacePartnerToken                             <- map["MarketplacePartnerToken"]
+        clientBarcode                                       = json["ClientBarcode"] as? String
+        recipientAddress                                    = json["RecipientAddress"] as? String
+        counterpartyRecipientDescription                    = json["CounterpartyRecipientDescription"] as? String
+        counterpartySenderType                              = json["CounterpartySenderType"] as? String
+        dateScan                                            = json["DateScan"] as? String
+        paymentStatus                                       = json["PaymentStatus"] as? String
+        paymentStatusDate                                   = json["PaymentStatusDate"] as? String
+        amountToPay                                         = json["AmountToPay"] as? String
+        amountPaid                                          = json["AmountPaid"] as? String
         
-        clientBarcode                                       <- map["ClientBarcode"]
-        recipientAddress                                    <- map["RecipientAddress"]
-        counterpartyRecipientDescription                    <- map["CounterpartyRecipientDescription"]
-        counterpartySenderType                              <- map["CounterpartySenderType"]
-        dateScan                                            <- map["DateScan"]
-        paymentStatus                                       <- map["PaymentStatus"]
-        paymentStatusDate                                   <- map["PaymentStatusDate"]
-        amountToPay                                         <- map["AmountToPay"]
-        amountPaid                                          <- map["AmountPaid"]
-        
-        status                                              <- map["Status"]
-        statusCode                                          <- map["StatusCode"]
-        refEW                                               <- map["RefEW"]
-        backwardDeliverySubTypesServices                    <- map["BackwardDeliverySubTypesServices"]
-        backwardDeliverySubTypesActions                     <- map["BackwardDeliverySubTypesActions"]
-        undeliveryReasons                                   <- map["UndeliveryReasons"]
+        status                                              = json["Status"] as? String
+        statusCode                                          = json["StatusCode"] as? String
+        refEW                                               = json["RefEW"] as? String
+        backwardDeliverySubTypesServices                    = json["BackwardDeliverySubTypesServices"] as? [Any]
+        backwardDeliverySubTypesActions                     = json["BackwardDeliverySubTypesActions"] as? [Any]
+        undeliveryReasons                                   = json["UndeliveryReasons"] as? String
     }
 }

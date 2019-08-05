@@ -86,9 +86,10 @@ class AddNewTrackViewController: UIViewController {
             self?.backToPreviousScreen()
         }
         viewModel.showLoading = { [weak self] (hide) in
-            self?.activityIndicator.isHidden = hide
-            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
-            
+            DispatchQueue.main.async {
+                self?.activityIndicator.isHidden = hide
+                hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            }
         }
         
     }

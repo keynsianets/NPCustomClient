@@ -46,9 +46,9 @@ class AddNewTrackViewModel: NSObject {
         showLoading?(false)
         RestAPI.shared.getTrackInfo(documents: [track], callback: { (isOk, trackInfo) in
             self.showLoading?(true)
-            if isOk, let success = trackInfo?.success, success, trackInfo?.data?.count ?? 0 > 0, let dateCreated = trackInfo?.data?[0].dateCreated, !dateCreated.isEmpty {
+            if isOk, let success = trackInfo?.success, success, trackInfo?.data.count ?? 0 > 0, let dateCreated = trackInfo?.data[0].dateCreated, !dateCreated.isEmpty {
                 debugPrint("is valid track")
-                if let status = trackInfo?.data?[0].status {
+                if let status = trackInfo?.data[0].status {
                     self.updateTrackStatus(track: track, status: status)
                 }
                 if !self.trackList.contains(track) {

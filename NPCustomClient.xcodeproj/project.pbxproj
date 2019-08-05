@@ -21,6 +21,10 @@
 		9D6B4F5722F2F6E00022C7C4 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5522F2F6E00022C7C4 /* Strings.swift */; };
 		9D6B4F5922F301E30022C7C4 /* PushLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */; };
 		9D6B4F5A22F301E30022C7C4 /* PushLocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */; };
+		9D6B4F5C22F315830022C7C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5B22F315830022C7C4 /* GoogleService-Info.plist */; };
+		9D6B4F5D22F315830022C7C4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5B22F315830022C7C4 /* GoogleService-Info.plist */; };
+		9D6B4F5F22F336F40022C7C4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5E22F336F40022C7C4 /* Log.swift */; };
+		9D6B4F6022F336F40022C7C4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6B4F5E22F336F40022C7C4 /* Log.swift */; };
 		9D93315522F031F200DD33C2 /* NewTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93315322F031F200DD33C2 /* NewTrackTableViewCell.swift */; };
 		9D93315622F031F200DD33C2 /* NewTrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D93315422F031F200DD33C2 /* NewTrackTableViewCell.xib */; };
 		9D93315922F038FA00DD33C2 /* AddNewTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D93315822F038FA00DD33C2 /* AddNewTrackViewModel.swift */; };
@@ -88,6 +92,8 @@
 		9D6B4F5022F2BF520022C7C4 /* AddNewTrackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTrackCoordinator.swift; sourceTree = "<group>"; };
 		9D6B4F5522F2F6E00022C7C4 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLocalNotification.swift; sourceTree = "<group>"; };
+		9D6B4F5B22F315830022C7C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9D6B4F5E22F336F40022C7C4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		9D93315322F031F200DD33C2 /* NewTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTrackTableViewCell.swift; sourceTree = "<group>"; };
 		9D93315422F031F200DD33C2 /* NewTrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTrackTableViewCell.xib; sourceTree = "<group>"; };
 		9D93315822F038FA00DD33C2 /* AddNewTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTrackViewModel.swift; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 				9DC133EF22F1F2AD0002F968 /* TodayExtensionTrackInfoTableViewCell.swift */,
 				9D9B94DE22DF119A0066FE54 /* MainInterface.storyboard */,
 				9D9B94E122DF119A0066FE54 /* Info.plist */,
+				9D6B4F5B22F315830022C7C4 /* GoogleService-Info.plist */,
 			);
 			path = NPTodayExtension;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 				9D192ADD22EF032100BCB889 /* RoundButtonWithShadow.swift */,
 				9DC133EA22F1EBE40002F968 /* CustomDateFormatter.swift */,
 				9D6B4F5822F301E30022C7C4 /* PushLocalNotification.swift */,
+				9D6B4F5E22F336F40022C7C4 /* Log.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 				9D9B94C922DF11030066FE54 /* Assets.xcassets in Resources */,
 				9DC133E922F1D2FD0002F968 /* TrackInfoTableViewCell.xib in Resources */,
 				9D9B94C722DF11010066FE54 /* Main.storyboard in Resources */,
+				9D6B4F5C22F315830022C7C4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +391,7 @@
 			files = (
 				9D9B94E022DF119A0066FE54 /* MainInterface.storyboard in Resources */,
 				9DC133F822F1FFD80002F968 /* TodayExtensionTrackInfoTableViewCell.xib in Resources */,
+				9D6B4F5D22F315830022C7C4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +483,7 @@
 				9D9B94C422DF11010066FE54 /* MyParcelsViewController.swift in Sources */,
 				9D6B4F5122F2BF520022C7C4 /* AddNewTrackCoordinator.swift in Sources */,
 				9DC133F422F1F4010002F968 /* MyParcelsViewModel.swift in Sources */,
+				9D6B4F5F22F336F40022C7C4 /* Log.swift in Sources */,
 				9D9B94C222DF11010066FE54 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +497,7 @@
 				9D6B4F5722F2F6E00022C7C4 /* Strings.swift in Sources */,
 				9DC133E322F17FE90002F968 /* RestAPI.swift in Sources */,
 				9D192AE222EF041700BCB889 /* ParcelsListModel.swift in Sources */,
+				9D6B4F6022F336F40022C7C4 /* Log.swift in Sources */,
 				9DC133F222F1F3B90002F968 /* TodayExtensionTrackInfoTableViewCell.swift in Sources */,
 				9D93315D22F06BA900DD33C2 /* Settings.swift in Sources */,
 				9DC133EC22F1EBE40002F968 /* CustomDateFormatter.swift in Sources */,
@@ -662,7 +674,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kineckt.pro.NPCustomClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -684,7 +696,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kineckt.pro.NPCustomClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -705,7 +717,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient.NPTodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kineckt.pro.NPCustomClient.NPTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -727,7 +739,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kinectpro.NPCustomClient.NPTodayExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kineckt.pro.NPCustomClient.NPTodayExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;

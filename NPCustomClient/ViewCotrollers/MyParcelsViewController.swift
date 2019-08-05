@@ -46,15 +46,20 @@ class MyParcelsViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         viewModel.loadData()
         viewModel.trackListChanged = { [weak self] () in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         }
         viewModel.showNoDataLabel = { [weak self] (hide) in
-            self?.noDataLabel.isHidden = hide
+            DispatchQueue.main.async {
+                self?.noDataLabel.isHidden = hide
+            }
         }
         viewModel.showLoading = { [weak self] (hide) in
-            self?.activityIndicator.isHidden = hide
-            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
-            
+            DispatchQueue.main.async {
+                self?.activityIndicator.isHidden = hide
+                hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            }
         }
     }
     
