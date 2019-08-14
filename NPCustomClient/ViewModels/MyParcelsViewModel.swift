@@ -36,6 +36,7 @@ class MyParcelsViewModel: NSObject {
         showLoading?(false)
         if let tracks = userDefaults?.array(forKey: defaultsTracksKey) as? [String], tracks.count > 0 {
             RestAPI.shared.getTrackInfo(documents: tracks) { (isOk, response) in
+                self.showLoading?(true)
                 if isOk, let success = response?.success, success, let data = response?.data, data.count > 0 {
                     var tracks: [TrackInfo] = []
                     for track in data {
@@ -71,6 +72,9 @@ class MyParcelsViewModel: NSObject {
                     self.showLoading?(true)
                 }
             }
+        } else {
+            self.showLoading?(true)
+            showNoDataLabel?(false)
         }
     }
     

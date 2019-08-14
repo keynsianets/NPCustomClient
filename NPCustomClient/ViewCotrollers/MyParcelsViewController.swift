@@ -44,7 +44,6 @@ class MyParcelsViewController: UIViewController {
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         tableView.allowsSelection = false
         self.navigationController?.isNavigationBarHidden = true
-        viewModel.loadData()
         viewModel.trackListChanged = { [weak self] () in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -57,10 +56,12 @@ class MyParcelsViewController: UIViewController {
         }
         viewModel.showLoading = { [weak self] (hide) in
             DispatchQueue.main.async {
+                debugPrint("activiti indicator hidden", hide)
                 self?.activityIndicator.isHidden = hide
                 hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
             }
         }
+        viewModel.loadData()
     }
     
     @objc func plusButtonDidTap() {
