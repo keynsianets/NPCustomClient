@@ -19,6 +19,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     let viewModel = MyParcelsViewModel()
     
+    var updateHandler: ((NCUpdateResult) -> Void)?
+    
+    @IBOutlet weak var noDataLabel: UILabel! {
+        didSet {
+            noDataLabel.text = Strings.noData
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         extensionContext?.widgetLargestAvailableDisplayMode = .expanded
@@ -29,17 +37,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         tableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
         viewModel.loadData()
         viewModel.trackListChanged = { [weak self] () in
-            self?.tableView.reloadData()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.updateHandler?(NCUpdateResult.newData)
+            }
         }
         viewModel.showLoading = { [weak self] (hide) in
-            self?.activityIndicator.isHidden = hide
-            hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            DispatchQueue.main.async {
+                self?.activityIndicator.isHidden = hide
+                hide ? self?.activityIndicator.stopAnimating() : self?.activityIndicator.startAnimating()
+            }
+        }
+        viewModel.showNoDataLabel = { [weak self] (hide) in
+            DispatchQueue.main.async {
+                self?.noDataLabel.isHidden = hide
+            }
         }
     }
         
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         viewModel.loadData()
-        completionHandler(NCUpdateResult.newData)
+        updateHandler = completionHandler
     }
     
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {

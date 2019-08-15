@@ -21,15 +21,24 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tma-cc-lQU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0OO-NY-F5t">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0OO-NY-F5t">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="SzK-eO-sYI">
+                                        <rect key="frame" x="10" y="8.5" width="300" height="20"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="SzK-eO-sYI" firstAttribute="leading" secondItem="tma-cc-lQU" secondAttribute="leading" constant="10" id="1WG-tu-llL"/>
                                     <constraint firstAttribute="bottom" secondItem="0OO-NY-F5t" secondAttribute="bottom" id="IXJ-Rt-7zm"/>
                                     <constraint firstItem="0OO-NY-F5t" firstAttribute="leading" secondItem="tma-cc-lQU" secondAttribute="leading" id="cN6-tn-lOJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="SzK-eO-sYI" secondAttribute="trailing" constant="10" id="gpn-KJ-jRD"/>
+                                    <constraint firstItem="SzK-eO-sYI" firstAttribute="centerY" secondItem="tma-cc-lQU" secondAttribute="centerY" id="sjR-Zl-lIJ"/>
                                     <constraint firstItem="0OO-NY-F5t" firstAttribute="top" secondItem="tma-cc-lQU" secondAttribute="top" id="tZq-GE-F5F"/>
                                     <constraint firstAttribute="trailing" secondItem="0OO-NY-F5t" secondAttribute="trailing" id="uM9-FL-mCu"/>
                                 </constraints>
@@ -56,6 +65,7 @@
                     <size key="freeformSize" width="320" height="37"/>
                     <connections>
                         <outlet property="activityIndicator" destination="yUC-V7-9NZ" id="2tp-VX-Sr1"/>
+                        <outlet property="noDataLabel" destination="SzK-eO-sYI" id="dUN-zH-YHR"/>
                         <outlet property="tableView" destination="0OO-NY-F5t" id="QPf-xF-BfF"/>
                     </connections>
                 </viewController>

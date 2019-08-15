@@ -70,9 +70,14 @@ class MyParcelsViewModel: NSObject {
                         return firstDate > secondDate
                     })
                     self.showLoading?(true)
+                } else {
+                    self.trackList = []
+                    self.showLoading?(true)
+                    self.showNoDataLabel?(false)
                 }
             }
         } else {
+            self.trackList = []
             self.showLoading?(true)
             showNoDataLabel?(false)
         }
