@@ -13,12 +13,17 @@ extension RestAPI {
     func getTrackInfo(documents: [String], callback: @escaping (_ isOK: Bool, _ trackInfo: NPResponse?) -> Void) {
         parameters["modelName"] = "TrackingDocument"
         parameters["calledMethod"] = "getStatusDocuments"
-
+        
         var documentsDictionary: [[String:String]] = []
         for document in documents {
             documentsDictionary.append(["DocumentNumber": document, "Phone":""])
         }
-        parameters["methodProperties"] = ["Documents": documentsDictionary]
+        if let language = Locale.current.languageCode, language == "ru" {
+            parameters["methodProperties"] = ["Documents": documentsDictionary, "Language" : language]
+        } else {
+            parameters["methodProperties"] = ["Documents": documentsDictionary]
+        }
+        
         guard let url = URL(string: serverURL) else {
             callback(false, nil)
             return
@@ -47,13 +52,77 @@ extension RestAPI {
                     callback(false, nil)
                     return
                 }
-                callback(true, NPResponse(json: json))
+                
+                let npResponse = NPResponse(json: json)
+                
+                if Locale.current.languageCode == "ru", let citySender = npResponse.data[0].citySender, let cityRecipient = npResponse.data[0].cityRecipient {
+                    if Locale.current.languageCode == "ru" {
+                        RestAPI.shared.getCityRu(city: citySender) { (addressFound, citySenderRu) in
+                            npResponse.data[0].citySender = citySenderRu
+                            RestAPI.shared.getCityRu(city: cityRecipient) { (addressFound, cityRecipientRu) in
+                                npResponse.data[0].cityRecipient = cityRecipientRu
+                                callback(true, npResponse)
+                            }
+                        }
+                        
+                    }
+                } else {
+                    callback(true, NPResponse(json: json))
+                }
+                
+                
+                
+                
             } catch let jsonError {
                 print("Error serializing json: ", jsonError)
             }
         }.resume()
         
+    }
+    
+    func getCityRu(city: String, callback: @escaping (_ isOK: Bool, _ city: String) -> Void) {
+        parameters["modelName"] = "Address"
+        parameters["calledMethod"] = "getCities"
+        parameters["methodProperties"] = ["FindByString": city, "Language" : "ru"]
         
+        guard let url = URL(string: serverURL) else {
+            callback(false, city)
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: []) else {
+            callback(false, city)
+            return
+        }
+        request.httpBody = httpBody
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            debugPrint("get response")
+            if let error = error {
+                debugPrint("error:", error)
+                callback(false, city)
+                return
+            }
+            guard let data = data else {
+                callback(false, city)
+                return
+            }
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                    callback(false, city)
+                    return
+                }
+                guard let data = json["data"] as? [[String: Any]], let cityRu = data[0]["DescriptionRu"] as? String else {
+                    callback(false, city)
+                    return
+                }
+                callback(true, cityRu)
+                
+            } catch let jsonError {
+                print("Error serializing json: ", jsonError)
+            }
+        }.resume()
     }
     
 }

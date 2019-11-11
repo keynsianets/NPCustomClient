@@ -23,7 +23,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var noDataLabel: UILabel! {
         didSet {
-            noDataLabel.text = Strings.noData
+            noDataLabel.text = Strings.noData.localized()
         }
     }
     

@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  
+
+  Created by Денис Марков on 11/11/19.
+  
+*/
+
+CFBundleName = "Новая Почта Lite";
+CFBundleDisplayName = "Новая Почта Lite";
+

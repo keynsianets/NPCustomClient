@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "180-Uq-POD"; */
+"180-Uq-POD.text" = "Label";
+
+/* Class = "UILabel"; text = "У вас еще нет посылок для отслеживания"; ObjectID = "Ac0-sd-Z5z"; */
+"Ac0-sd-Z5z.text" = "У вас еще нет посылок для отслеживания";
+
+/* Class = "UILabel"; text = "+"; ObjectID = "Lht-DV-xhg"; */
+"Lht-DV-xhg.text" = "+";
+
+/* Class = "UILabel"; text = "№ ЭН"; ObjectID = "Nzw-rn-5eO"; */
+"Nzw-rn-5eO.text" = "№ ЭН";
+
+/* Class = "UITextField"; placeholder = "Введите номер ЭН"; ObjectID = "Tmn-Jr-PV0"; */
+"Tmn-Jr-PV0.placeholder" = "Введите номер ЭН";
+
+/* Class = "UIButton"; normalTitle = "X"; ObjectID = "WjG-1e-CJT"; */
+"WjG-1e-CJT.normalTitle" = "X";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aDM-TW-QDE"; */
+"aDM-TW-QDE.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "msz-8V-Cgr"; */
+"msz-8V-Cgr.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Отследить"; ObjectID = "ytx-a1-74J"; */
+"ytx-a1-74J.normalTitle" = "Отследить";

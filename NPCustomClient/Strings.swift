@@ -9,10 +9,11 @@
 import Foundation
 
 struct Strings {
-    static let myParcels = "Мои отправления"
-    static let noData = "У вас еще нет посылок для отслеживания"
-    static let trackParcel = "Отследить ЭН"
-    static let trackNum = "№ ЭН"
-    static let inputTrack = "Введите номер ЭН"
-    static let incorrectTrack = "Такого номера не существует"
+    static let myParcels = "Moї відправлення"
+    static let noData = "У вас ще немає посилок для відстеження"
+    static let trackParcel = "Відстежити відправлення"
+    static let trackNum = "№ ЕН"
+    static let inputTrack = "Введіть номер ЕН"
+    static let incorrectTrack = "Накладної з таким номером не знайдено."
+    static let track = "Відстежити"
 }

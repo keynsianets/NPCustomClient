@@ -16,12 +16,12 @@ class MyParcelsViewController: UIViewController {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var screenTitleLabel: UILabel! {
         didSet {
-            screenTitleLabel.text = Strings.myParcels
+            screenTitleLabel.text = Strings.myParcels.localized()
         }
     }
     @IBOutlet weak var noDataLabel: UILabel! {
         didSet {
-            noDataLabel.text = Strings.noData
+            noDataLabel.text = Strings.noData.localized()
         }
     }
     @IBOutlet weak var tableView: UITableView!

@@ -23,7 +23,7 @@ class AddNewTrackViewController: UIViewController {
     }
     @IBOutlet weak var screenTitleLabel: UILabel! {
         didSet {
-            screenTitleLabel.text = Strings.trackParcel
+            screenTitleLabel.text = Strings.trackParcel.localized()
         }
     }
     @IBOutlet weak var clearButton: UIButton! {
@@ -33,12 +33,12 @@ class AddNewTrackViewController: UIViewController {
     }
     @IBOutlet weak var trackNumberLabel: UILabel! {
         didSet {
-            trackNumberLabel.text = Strings.trackNum
+            trackNumberLabel.text = Strings.trackNum.localized()
         }
     }
     @IBOutlet weak var trackNumberTextField: UITextField! {
         didSet {
-            trackNumberTextField.placeholder = Strings.inputTrack
+            trackNumberTextField.placeholder = Strings.inputTrack.localized()
             trackNumberTextField.addTarget(self, action: #selector(textFieldTextDidChanged(_:)),
                                 for: UIControl.Event.editingChanged)
             trackNumberTextField.addTarget(self, action: #selector(endEditing), for: .touchUpOutside)
@@ -57,7 +57,7 @@ class AddNewTrackViewController: UIViewController {
     }
     @IBOutlet weak var errorLabel: UILabel! {
         didSet {
-            errorLabel.text = Strings.incorrectTrack
+            errorLabel.text = Strings.incorrectTrack.localized()
         }
     }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

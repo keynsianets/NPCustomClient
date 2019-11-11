@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  
+
+  Created by Денис Марков on 11/11/19.
+  
+*/
+
+CFBundleName = "Виджет для Новой Почти";
+CFBundleDisplayName = "Виджет для Новой Почти";

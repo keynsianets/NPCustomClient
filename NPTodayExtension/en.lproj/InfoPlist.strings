@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  
+
+  Created by Денис Марков on 11/11/19.
+  
+*/
+
+CFBundleName = "Widget for Nova Poshta";
+CFBundleDisplayName = "Widget for Nova Poshta";
